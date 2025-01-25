@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perlin Noise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            overflow: hidden;
+        }
+        canvas {
+            flex: 3;
+            display: block;
+            overflow: hidden;
+        }
+        #controlls {
+            height: 100vh;
+            color: aliceblue;
+            flex: 1;
+            background: #282525;
+            padding: 20px;
+            box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+        #formControlls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="range"] {
+            color: #958484;
+            width: 100%;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px; /* Espaciado entre controles */
+            margin: 20px;
+        }
+
+        /* Estilo para cada input y botón */
+        .controls input, .controls button {
+            padding: 8px 12px;
+            font-size: 16px;
+            width: 200px; /* Ajuste el ancho del input */
+        }
+
+        /* Para los controles más pequeños, como el tamaño de la imagen */
+        #imageSize {
+            width: 100px;
+        }
+
+        /* Contenedor para el nombre del mapa y tamaño de la imagen */
+        #imageContainer {
+            display: flex;
+            flex-direction: row;  /* Alinea los elementos en una fila */
+            justify-content: space-between; /* Espacio entre los elementos */
+            gap: 20px; /* Espaciado entre los controles */
+            align-items: center; /* Alinea los controles verticalmente */
+            margin-top: 20px;
+        }
+
+        /* Opcional: Ajustes de tamaño de la página para dispositivos más pequeños */
+        @media (max-width: 600px) {
+            .controls {
+                align-items: center;
+            }
+
+            .controls input, .controls button {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="perlingMap"></canvas>
+    <section id="controlls">
+        <form action="" id="formControlls">
+            <label for="rangeScale">Escala:</label>
+            <input id="rangeScale" type="range" min="50" max="500" value="200">
+            <br>
+            
+            <label for="rangeFrequency">Frecuencia:</label>
+            <input id="rangeFrequency" type="range" min="0" max="5" step="0.1" value="2">
+            <br>
+            
+            <label for="rangeAmplitude">Amplitud:</label>
+            <input id="rangeAmplitude" type="range" min="0" max="5" step="0.1" value="4">
+            <br>
+            
+            <label for="rangeSteps">Pasos de ruido:</label>
+            <input id="rangeSteps" type="range" min="1" max="20" value="12" step="1">
+            <br>
+    
+            <label for="rangePixelSize">Tamaño de píxel:</label>
+            <input id="rangePixelSize" type="range" min="1" max="20" value="5" step="1">
+            <br>
+    
+            <!-- Nuevos rangos de profundidad para cada zona -->
+            <label for="rangeWaterDepth">Profundidad del agua:</label>
+            <input id="rangeWaterDepth" type="range" min="0" max="10" value="2" step="0.1">
+            <br>
+    
+            <label for="rangeLandDepth">Profundidad de la tierra:</label>
+            <input id="rangeLandDepth" type="range" min="0" max="10" value="5" step="0.1">
+            <br>
+    
+            <label for="rangeGrassDepth">Profundidad del césped:</label>
+            <input id="rangeGrassDepth" type="range" min="0" max="10" value="8" step="0.1">
+
+            <label for="mapName">Nombre del mapa:</label>
+            <input id="mapName" type="text" placeholder="Introduce el nombre del mapa">
+            <br>
+            <button id="generateJson" type="button">Generar JSON</button>
+            
+            <!-- Contenedor para el tamaño de la imagen y el botón -->
+            <div id="imageContainer">
+                <div>
+                    <label for="imageSize">Tamaño de la imagen:</label>
+                    <input id="imageSize" type="number" min="100" max="1000" value="500" />
+                </div>
+                <button id="generateImage" type="button">Generar Imagen</button>
+            </div>
+        </form>
+    </section>
+    
+    <script src="main.js" type="module"></script>
+</body>
+</html>
+
