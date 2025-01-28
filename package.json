@@ -1,0 +1,17 @@
+{
+  "name": "perlingnoice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"electron ."
+  },
+  "keywords": [],
+  "author": "MrCollector-cmd",
+  "license": "ISC",
+  "description": "Herramienta de creacion de mapas procedurales mediante 'perlig noise'",
+  "dependencies": {
+    "electron": "34.0.1"
+  }
+}
